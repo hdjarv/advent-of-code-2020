@@ -1,17 +1,13 @@
 #!/usr/bin/env node
 
-import { existsSync as fileExists, readFile as _readFile } from "fs";
-import { basename, join } from "path";
-import { promisify } from "util";
-
-const readFile = promisify(_readFile);
+import { basename, fileExists, join, readFile, strToNum } from "./lib/utils";
 
 if (process.argv.length < 3) {
   console.error(`Usage: ${basename(process.argv[1])} <day> [<arg1>...<argN>]`);
   process.exit(1);
 }
 
-const dayNo = Number.parseInt(process.argv[2], 10);
+const dayNo = strToNum(process.argv[2]);
 const dayModule = `day-${dayNo < 10 ? `0${dayNo}` : dayNo}`;
 const inputFile = join(__dirname, "inputs", dayModule + "-input.txt");
 
