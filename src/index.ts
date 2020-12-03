@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node   # -*- TypeScript -*-
 
 import { basename, fileExists, join, readFile, strToNum } from "./lib/utils";
 
