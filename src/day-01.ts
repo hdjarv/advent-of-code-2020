@@ -1,8 +1,8 @@
 import { EOL, strToNum } from "./lib/utils";
 
 function solvePart1(data: number[]): number {
-  for (let i = 0; i <= data.length; i++) {
-    for (let j = 0; j <= data.length; j++) {
+  for (let i = 0; i < data.length; i++) {
+    for (let j = 0; j < data.length; j++) {
       if (j === i) continue;
       if (data[i] + data[j] === 2020) {
         return data[i] * data[j];
@@ -13,9 +13,9 @@ function solvePart1(data: number[]): number {
 }
 
 function solvePart2(data: number[]): number {
-  for (let i = 0; i <= data.length; i++) {
-    for (let j = 0; j <= data.length; j++) {
-      for (let k = 0; k <= data.length; k++) {
+  for (let i = 0; i < data.length; i++) {
+    for (let j = 0; j < data.length; j++) {
+      for (let k = 0; k < data.length; k++) {
         if (j === i && k === i) continue;
         if (data[i] + data[j] + data[k] === 2020) {
           return data[i] * data[j] * data[k];
