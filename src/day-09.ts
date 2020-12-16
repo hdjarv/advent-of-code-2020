@@ -1,4 +1,4 @@
-import { EOL, strToNum } from "./lib/utils";
+import { EOL, findMinMaxInRange, strToNum, sumRange } from "./lib/utils";
 
 const PREAMBLE_SIZE = 25;
 
@@ -17,15 +17,6 @@ function invalidNumber(val: number, ix: number, data: number[]): boolean {
   return true;
 }
 
-function sumRange(numbers: number[], startIx: number, endIx: number): number {
-  let result = 0;
-  for (let i = startIx; i <= endIx; i++) {
-    result += numbers[i];
-  }
-
-  return result;
-}
-
 function solvePart1(input: number[]): number {
   return input.filter(invalidNumber)[0];
 }
@@ -35,14 +26,9 @@ function solvePart2(input: number[], target: number): number {
     if (input[i] >= target) continue;
     for (let j = i + 1; j < input.length - 1; j++) {
       if (input[j] >= target) continue;
-      if (sumRange(input, i, j) === target) {
-        let smallest = Number.MAX_VALUE,
-          largest = Number.MIN_VALUE;
-        for (let k = i; k <= j; k++) {
-          if (input[k] < smallest) smallest = input[k];
-          if (input[k] > largest) largest = input[k];
-        }
-        return smallest + largest;
+      if (sumRange(input, i, j + 1) === target) {
+        const { min, max } = findMinMaxInRange(input, i, j + 1);
+        return min + max;
       }
     }
   }
